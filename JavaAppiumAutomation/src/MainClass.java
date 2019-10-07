@@ -1,10 +1,11 @@
 
 public class MainClass {
 
-    private int class_number = 20;
+    private String class_string = "Hello, world";
 
-    public int getClassNumber(){
-        int class_number1 = this.class_number;
-        return class_number;
+    public String getClassString(){
+        String stringForReturn = this.class_string;
+        return stringForReturn;
     }
+
 }
