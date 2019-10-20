@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="995092a0-b460-4645-a6ba-03d86be6f5f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaAppiumAutomation2/apks/org.wikipedia.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaAppiumAutomation2/apks/org.wikipedia.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaAppiumAutomation2/out/production/JavaAppiumAutomation2/FirstTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaAppiumAutomation2/out/production/JavaAppiumAutomation2/FirstTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaAppiumAutomation2/src/FirstTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaAppiumAutomation2/src/FirstTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +34,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaAppiumAutomation2" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
