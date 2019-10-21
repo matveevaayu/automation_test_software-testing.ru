@@ -5,12 +5,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.plugin2.message.Message;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class FirstTest {
 
@@ -37,29 +41,40 @@ public class FirstTest {
     }
 
     @Test
-    public void testComparePlaceholderText()
+    public void searchForMultipleArticles()
     {
         waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "Cannot find Search Wikipedia input",
                 5
         );
-        WebElement search_container = waitForElementPresent(
+        waitForElementAndSendKeys(
                 By.xpath("//*[contains(@text, 'Search…')]"),
-                "Cannot find Search input",
+                "Java",
+                "Cannot find 'Object-oriented programming language' topic searching by 'Java'",
                 5
         );
-
-        String placeholder_text = search_container.getAttribute("text");
-
-        Assert.assertEquals(
-                "We see unexpected placeholder!",
-                "Search…",
-                placeholder_text
+        waitForElementPresent(
+                By.id("org.wikipedia:id/page_list_item_container"),
+                "Cannot find result of Search",
+                5
         );
-
+        if (driver.findElements(By.id("org.wikipedia:id/page_list_item_container")).size() > 2) {
+            System.out.println("Found several articles");
+        } else {
+            System.out.println("Total 1 or 0 articles found");
+        }
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find button 'x' to cancel search",
+                5
+        );
+        waitForElementNotPresent(
+                By.id("org.wikipedia:id/page_list_item_container"),
+                "result of search is still present on the page ",
+                5
+        );
     }
-
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -101,3 +116,4 @@ public class FirstTest {
         return element;
     }
 }
+
