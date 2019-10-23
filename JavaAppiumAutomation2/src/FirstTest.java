@@ -1,10 +1,13 @@
+import com.sun.xml.internal.ws.wsdl.writer.document.StartWithExtensionsType;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,8 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sun.plugin2.message.Message;
 
+import javax.swing.*;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FirstTest {
@@ -40,9 +46,9 @@ public class FirstTest {
         driver.quit();
     }
 
+
     @Test
-    public void searchForMultipleArticles()
-    {
+    public void checkWordsInSearch() {
         waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "Cannot find Search Wikipedia input",
@@ -59,22 +65,18 @@ public class FirstTest {
                 "Cannot find result of Search",
                 5
         );
-        if (driver.findElements(By.id("org.wikipedia:id/page_list_item_container")).size() > 2) {
-            System.out.println("Found several articles");
-        } else {
-            System.out.println("Total 1 or 0 articles found");
-        }
-        waitForElementAndClick(
-                By.id("org.wikipedia:id/search_close_btn"),
-                "Cannot find button 'x' to cancel search",
-                5
-        );
-        waitForElementNotPresent(
-                By.id("org.wikipedia:id/page_list_item_container"),
-                "result of search is still present on the page ",
-                5
-        );
+
+        driver.navigate().back();
+        List <WebElement> searchResults = driver.findElements(By.id("org.wikipedia:id/page_list_item_title"));
+
+         for (WebElement article : searchResults)
+         {
+             String title = article.getAttribute("text");
+             Assert.assertTrue("Article does not contain 'Java' in title", title.contains("Java"));
+         }
     }
+
+
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -114,6 +116,14 @@ public class FirstTest {
         WebElement element = waitForElementPresent(by, error_message, 5);
         element.clear();
         return element;
+    }
+    protected void swipeUp(int timeOfSwipe){
+        TouchAction action = new TouchAction(driver);
+        Dimension size = driver.manage().window().getSize();
+        int x = size.width / 2;
+        int start_y = (int) (size.height * 0.8);
+        int end_y = (int) (size.height * 0.2);
+        action.press(x, start_y).waitAction(timeOfSwipe).moveTo(x, end_y).release().perform();
     }
 }
 
