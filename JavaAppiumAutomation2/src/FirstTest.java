@@ -2,10 +2,8 @@ import com.sun.xml.internal.ws.wsdl.writer.document.StartWithExtensionsType;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FirstTest {
 
     private AppiumDriver driver;
@@ -36,38 +35,98 @@ public class FirstTest {
         capabilities.setCapability("app","/Users/matveevaayu/Documents/GitHub/automation_test_software-testing.ru/JavaAppiumAutomation2/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
     }
+
     @After
     public void tearDown()
     {
+        driver.rotate(ScreenOrientation.PORTRAIT);
         driver.quit();
     }
 
     @Test
-
-    public void displayArticleTitle()
+    public void test1ChangeScreenOrientation()
     {
         waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "Cannot find Search Wikipedia input",
                 5
         );
+        String search_line = "adsflgkhd";
         waitForElementAndSendKeys(
                 By.xpath("//*[contains(@text, 'Search…')]"),
-                "Java",
+                search_line,
                 "Cannot find search input",
                 5
         );
+        String search_result_locator = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']";
+        String empty_result_label = "//*[@text='No results found']";
+
+        waitForElementPresent(
+                By.xpath(empty_result_label),
+                "Cannot find empty result label by the request " + search_line,
+                15
+        );
+        assertElementNotPresent(
+                By.xpath(search_result_locator),
+                "We've found some results " + search_line
+        );
+
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+
+        waitForElementPresent(
+                By.xpath(empty_result_label),
+                "Cannot find empty result label by the request " + search_line,
+                15
+        );
+        assertElementNotPresent(
+                By.xpath(search_result_locator),
+                "We've found some results " + search_line
+        );
+
+        driver.rotate(ScreenOrientation.PORTRAIT);
+
+        waitForElementPresent(
+                By.xpath(empty_result_label),
+                "Cannot find empty result label by the request " + search_line,
+                15
+        );
+        assertElementNotPresent(
+                By.xpath(search_result_locator),
+                "We've found some results " + search_line
+        );
+
+    }
+    @Test
+    public void test2AmountOfEmptySearch()
+    {
         waitForElementAndClick(
-                By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_title'][@text='Java (programming language)']"),
-                "Cannot find 'Java' in search",
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search Wikipedia input",
                 5
         );
-        assertElementPresent(
-                By.id("org.wikipedia:id/view_page_title_text"),
-                "Cannot find article title"
+        String search_line = "adsflgkhd";
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                search_line,
+                "Cannot find search input",
+                5
+        );
+        String search_result_locator = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']";
+        String empty_result_label = "//*[@text='No results found']";
+
+        waitForElementPresent(
+                By.xpath(empty_result_label),
+                "Cannot find empty result label by the request " + search_line,
+                15
+        );
+        assertElementNotPresent(
+                By.xpath(search_result_locator),
+                "We've found some results " + search_line
         );
     }
+
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -176,7 +235,7 @@ public class FirstTest {
         int amount_of_elements = getAmmountOfElements(by);
         if (amount_of_elements > 0)
         {
-            String default_message = "An element '" + by.toString() + "' supposed to be not present. ";
+            String default_message = "An element '" + by.toString() + "' supposed to be not present";
             throw new AssertionError(default_message + " " + error_message);
         }
     }
@@ -186,16 +245,5 @@ public class FirstTest {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
         return element.getAttribute(attribute);
     }
-
-    private void assertElementPresent(By by, String error_message)
-    {
-        int amount_of_elements = getAmmountOfElements(by);
-        if (amount_of_elements == 0)
-        {
-            String default_message = "An element '" + by.toString() + "' must be present. ";
-            throw new AssertionError(default_message + " " + error_message);
-        }
-    }
-
 }
 
