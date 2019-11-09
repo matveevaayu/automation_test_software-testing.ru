@@ -35,13 +35,12 @@ public class FirstTest {
         capabilities.setCapability("app","/Users/matveevaayu/Documents/GitHub/automation_test_software-testing.ru/JavaAppiumAutomation2/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-
+        driver.rotate(ScreenOrientation.PORTRAIT);
     }
 
     @After
     public void tearDown()
     {
-        driver.rotate(ScreenOrientation.PORTRAIT);
         driver.quit();
     }
 
@@ -98,6 +97,7 @@ public class FirstTest {
         );
 
     }
+
     @Test
     public void test2AmountOfEmptySearch()
     {
