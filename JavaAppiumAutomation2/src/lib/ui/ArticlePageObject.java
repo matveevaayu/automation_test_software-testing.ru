@@ -113,6 +113,7 @@ public class ArticlePageObject extends MainPageObject {
 
     public void assertTitlePresent()
     {
+        this.waitForTitleElement();
         this.assertElementNotPresent(By.xpath(TITLE), "Title not present");
     }
 
