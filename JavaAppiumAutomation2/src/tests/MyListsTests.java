@@ -24,7 +24,7 @@ public class MyListsTests extends CoreTestCase
         ArticlePageObject.waitForTitleElement();
         String article_title = ArticlePageObject.getArticleTitle();
         String name_of_folder = "Learning programming";
-        ArticlePageObject.addArticleToMyList(name_of_folder);
+        ArticlePageObject.addFirstArticleToMyList(name_of_folder);
         ArticlePageObject.closeArticle();
 
         NavigationUi NavigationUi = new NavigationUi(driver);
