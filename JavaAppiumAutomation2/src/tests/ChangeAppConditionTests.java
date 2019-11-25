@@ -40,15 +40,15 @@ public class ChangeAppConditionTests extends CoreTestCase
         );
     }
 
-    @Test
-    public void testCheckSearchArticleInBackground()
-    {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResultToAppear("Object-oriented programming language");
-        this.backgroundApp(2);
-        SearchPageObject.waitForSearchResultToAppear("Object-oriented programming language");
-    }
+//    @Test
+//    public void testCheckSearchArticleInBackground()
+//    {
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+//        this.backgroundApp(2);
+//        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+//    }
 }

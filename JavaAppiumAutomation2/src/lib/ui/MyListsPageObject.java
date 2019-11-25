@@ -31,7 +31,7 @@ public class MyListsPageObject extends MainPageObject{
         );
     }
 
-        public void waitForArticleToAppearByTitle(String article_title)
+    public void waitForArticleToAppearByTitle(String article_title)
     {
         String article_xpath = getFolderXpathByName(article_title);
         this.waitForElementPresent(
@@ -49,20 +49,14 @@ public class MyListsPageObject extends MainPageObject{
                 15);
     }
 
-    public void clickByArticleWithSubstring(String substring)
-    {
-        String article_xpath = getSavedArticleXpathByTitle(substring);
-        this.waitForElementAndClick(By.xpath(article_xpath), "Cannot find and click search article with substring" + substring, 10);
-    }
-
-    public void swipeByArticleToDelete(String article_title)
-    {
-        this.waitForArticleToAppearByTitle(article_title);
-        String article_xpath = getFolderXpathByName(article_title);
-        this.swipeElementToLeft(
-                By.xpath(article_xpath),
-                "Cannot find saved article"
-        );
-        this.waitForArticleToDisappearByTitle(article_title);
-    }
+//    public void swipeByArticleToDelete(String article_title)
+//    {
+//        this.waitForArticleToAppearByTitle(article_title);
+//        String article_xpath = getFolderXpathByName(article_title);
+//        this.swipeElementToLeft(
+//                By.xpath(article_xpath),
+//                "Cannot find saved article"
+//        );
+//        this.waitForArticleToDisappearByTitle(article_title);
+//    }
 }

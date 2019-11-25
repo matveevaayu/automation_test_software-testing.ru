@@ -14,13 +14,8 @@ public class ArticlePageObject extends MainPageObject {
         ADD_TO_MY_LIST_OVERLAY = "org.wikipedia:id/onboarding_button",
         MY_LIST_NAME_INPUT = "org.wikipedia:id/text_input",
         MY_LIST_OK_BUTTON = "//*[@text='OK']",
-        LIST_TO_SAVE_PAGE = "//*[@resource-id = 'org.wikipedia:id/item_container']//*[@text='{SUBSTRING}']",
         CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']";
 
-    private static String getReadingList(String substring)
-    {
-        return LIST_TO_SAVE_PAGE.replace("{SUBSTRING}", substring);
-    }
 
     public ArticlePageObject(AppiumDriver driver)
     {
@@ -38,16 +33,16 @@ public class ArticlePageObject extends MainPageObject {
         return title_element.getAttribute("text");
     }
 
-    public void swipeToFooter()
-    {
-        this.swipeUpToFindElement(
-                By.xpath(FOOTER_ELEMENT),
-                "Cannot find the end of article",
-                20
-        );
-    }
+//    public void swipeToFooter()
+//    {
+//        this.swipeUpToFindElement(
+//                By.xpath(FOOTER_ELEMENT),
+//                "Cannot find the end of article",
+//                20
+//        );
+//    }
 
-    public void addFirstArticleToMyList(String name_of_folder)
+    public void addArticleToMyList(String name_of_folder)
     {
         this.waitForElementAndClick(
                 By.xpath(OPTIONS_BUTTON),
@@ -83,25 +78,6 @@ public class ArticlePageObject extends MainPageObject {
         );
     }
 
-    public void addSubsequentArticleToMyList(String name_of_folder)
-    {
-        this.waitForElementAndClick(
-                By.xpath(OPTIONS_BUTTON),
-                "Cannot find button to open article options",
-                5
-        );
-        this.waitForElementAndClick(
-                By.xpath(OPTIONS_ADD_TO_MY_LIST_BUTTON),
-                "Cannot find option to add article to reading list",
-                5
-        );
-        String reading_list_xpath = getReadingList(name_of_folder);
-        this.waitForElementAndClick(
-                By.xpath(reading_list_xpath),
-                "Cannot find and click list with substring " + name_of_folder,
-                10);
-    }
-
     public void closeArticle()
     {
         this.waitForElementAndClick(
@@ -110,11 +86,4 @@ public class ArticlePageObject extends MainPageObject {
                 5
         );
     }
-
-    public void assertTitlePresent()
-    {
-        this.waitForTitleElement();
-        this.assertElementNotPresent(By.xpath(TITLE), "Title not present");
-    }
-
 }

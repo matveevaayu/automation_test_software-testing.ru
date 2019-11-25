@@ -27,21 +27,21 @@ public class ArticleTests extends CoreTestCase
         );
     }
 
-    @Test
-
-    public void testSwipeArticle()
-    {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubstring("Appium");
-
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-
-        ArticlePageObject.waitForTitleElement();
-        ArticlePageObject.swipeToFooter();
-
-    }
+//    @Test
+//
+//    public void testSwipeArticle()
+//    {
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Appium");
+//        SearchPageObject.clickByArticleWithSubstring("Appium");
+//
+//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+//
+//        ArticlePageObject.waitForTitleElement();
+//        ArticlePageObject.swipeToFooter();
+//
+//    }
 
 }

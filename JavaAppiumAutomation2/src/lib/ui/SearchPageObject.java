@@ -50,15 +50,10 @@ public class SearchPageObject extends MainPageObject{
         this.waitForElementAndSendKeys(By.xpath(SEARCH_INPUT), search_line, "Cannot find and type into search input", 5);
     }
 
-    public void waitForSearchResultToAppear(String substring)
+    public void waitForSearchResult(String substring)
     {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with substring" + substring);
-    }
-
-    public void waitForSearchResultToDisappear()
-    {
-        this.waitForElementNotPresent(By.id(SEARCH_RESULT_ELEMENT), "Search results are still displayed", 10);
     }
 
     public void clickByArticleWithSubstring(String substring)
@@ -97,5 +92,4 @@ public class SearchPageObject extends MainPageObject{
                 "We've supposed not to find any results "
         );
     }
-
 }
