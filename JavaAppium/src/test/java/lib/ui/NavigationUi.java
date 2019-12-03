@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class NavigationUi extends MainPageObject{
 
@@ -8,7 +9,7 @@ abstract public class NavigationUi extends MainPageObject{
         MY_LISTS_LINK,
         EXPLORE_LINK;
 
-    public NavigationUi(AppiumDriver driver)
+    public NavigationUi(RemoteWebDriver driver)
     {
         super(driver);
     }

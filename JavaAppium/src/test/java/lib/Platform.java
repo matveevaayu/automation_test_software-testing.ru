@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import sun.jvm.hotspot.oops.Instance;
 
 import java.net.URL;
@@ -11,6 +12,7 @@ import java.net.URL;
 public class Platform {
     private static final String PLATFORM_IOS = "iOS";
     private static final String PLATFORM_ANDROID = "Android";
+    private static final String PLATFORM_MOBILE_WEB = "mobile_web";
     private static final String APPIUM_URL = "http://127.0.0.1:4723/wd/hub";
 
     private static Platform instance;
@@ -23,7 +25,7 @@ public class Platform {
         return instance;
     }
 
-    public AppiumDriver getDriver() throws Exception
+    public RemoteWebDriver getDriver() throws Exception
     {
         URL URL = new URL(APPIUM_URL);
         if(this.isAndroid()){
@@ -42,6 +44,10 @@ public class Platform {
     public boolean isIOS()
     {
         return isPlatform(PLATFORM_IOS);
+    }
+    public boolean isMw()
+    {
+        return isPlatform(PLATFORM_MOBILE_WEB);
     }
 
 
@@ -76,7 +82,7 @@ public class Platform {
         return my_platform.equals(platform);
     }
 
-    private String getPlatformVar()
+    public String getPlatformVar()
     {
         return System.getenv("PLATFORM");
     }
