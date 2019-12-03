@@ -6,7 +6,7 @@ import tests.ArticleTests;
 import tests.ChangeAppConditionTests;
 import tests.MyListsTests;
 import tests.SearchTests;
-import tests.iOS.GetStartedTest;
+import tests.GetStartedTest;
 
 @RunWith(Suite.class)
 
