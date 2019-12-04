@@ -23,7 +23,7 @@ public class AuthorizationPageObject extends MainPageObject {
         public void enterLoginData(String  login, String password)
         {
             this.waitForElementAndSendKeys(LOGIN_INPUT, login,"Cannot find and pit a login to the login input.", 5);
-            this.waitForElementAndSendKeys(PASSWORD_INPUT, login,"Cannot find and put a password to the password input.", 5);
+            this.waitForElementAndSendKeys(PASSWORD_INPUT, password,"Cannot find and put a password to the password input.", 5);
         }
 
         public void submitForm()

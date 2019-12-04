@@ -125,10 +125,7 @@ abstract public class ArticlePageObject extends MainPageObject {
         if (Platform.getInstance().isMw()){
             this.removeArticleFromSavedIfItAdded();
         }
-//        if (Platform.getInstance().isMw()){
-//            //NavigationUi NavigationUi = NavigationUIFactory.get(driver);
-//            NavigationUi.clickAddTitleInSaved();
-//        }
+
         this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 5);
     }
 
@@ -140,7 +137,8 @@ abstract public class ArticlePageObject extends MainPageObject {
                     "Cannot click button to remove an article from saved",
                     1
             );
-            this.waitForElementPresent( //this.waitForElementPresent(
+
+            this.waitForElementPresent(
                     OPTIONS_ADD_TO_MY_LIST_BUTTON,
                     "Cannot find button to add an article to saved list after removing it from this list before"
             );
