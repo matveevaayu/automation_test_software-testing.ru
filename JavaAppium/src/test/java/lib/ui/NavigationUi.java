@@ -4,6 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import static lib.ui.ArticlePageObject.OPTIONS_ADD_TO_MY_LIST_BUTTON;
+
 abstract public class NavigationUi extends MainPageObject{
 
     protected static String
@@ -41,13 +43,11 @@ abstract public class NavigationUi extends MainPageObject{
         }
     }
     public void clickAddTitleInSaved() {
-        if (Platform.getInstance().isIOS()) {
             this.tryClickElementWithFewAttempts(
-                    MY_LISTS_LINK,
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
                     "Cannot find navigation button to My list",
                     5
             );
-        }
     }
 
     public void clickExplore()

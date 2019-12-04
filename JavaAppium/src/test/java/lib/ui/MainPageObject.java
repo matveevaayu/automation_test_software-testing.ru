@@ -217,7 +217,7 @@ public class MainPageObject {
         return getAmmountOfElements(locator) > 0;
     }
 
-    public void tryClickElementWithFewAttempts(String locator, String error_message, int amount_of_attemts)
+    public void tryClickElementWithFewAttempts(String locator, String error_message, int amount_of_attempts)
     {
         int current_attempts = 0;
         boolean need_more_attempts = true;
@@ -226,7 +226,7 @@ public class MainPageObject {
                 this.waitForElementAndClick(locator, error_message, 1);
                 need_more_attempts = false;
             } catch (Exception e) {
-                if (current_attempts > amount_of_attemts){
+                if (current_attempts > amount_of_attempts){
                     this.waitForElementAndClick(locator, error_message, 1);
                 }
             }

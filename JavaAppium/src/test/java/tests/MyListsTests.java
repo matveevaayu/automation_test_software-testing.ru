@@ -39,8 +39,16 @@ public class MyListsTests extends CoreTestCase
 
         if(Platform.getInstance().isAndroid()){
             ArticlePageObject.addFirstArticleToMyList(name_of_folder);
-        } else {
-            ArticlePageObject.addArticlesToMySaved();
+        }
+        if(Platform.getInstance().isIOS()) {
+        ArticlePageObject.addArticlesToMySaved();
+        }
+
+        if (Platform.getInstance().isMw()){
+            NavigationUi NavigationUi = NavigationUIFactory.get(driver);
+            NavigationUi.clickAddTitleInSaved();
+        }
+        if(Platform.getInstance().isIOS()) {
             ArticlePageObject.closeSyncSavedArticleOverlay();
         }
         if (Platform.getInstance().isMw()){

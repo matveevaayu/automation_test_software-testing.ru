@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import lib.ui.factories.NavigationUIFactory;
 import org.openqa.selenium.WebElement;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -124,23 +125,26 @@ abstract public class ArticlePageObject extends MainPageObject {
         if (Platform.getInstance().isMw()){
             this.removeArticleFromSavedIfItAdded();
         }
+//        if (Platform.getInstance().isMw()){
+//            //NavigationUi NavigationUi = NavigationUIFactory.get(driver);
+//            NavigationUi.clickAddTitleInSaved();
+//        }
         this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 5);
     }
 
     public void removeArticleFromSavedIfItAdded ()
     {
-//        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
-//            this.waitForElementAndClick(
-//                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
-//                    "Cannot click button to remove an article from saved",
-//                    1
-//            );
-            this.waitForElementAndClick( //this.waitForElementPresent(
-                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
-                    "Cannot find button to add an article to saved list after removing it from this list before",
-                    5
+        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
+            this.waitForElementAndClick(
+                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    "Cannot click button to remove an article from saved",
+                    1
             );
-       // }
+            this.waitForElementPresent( //this.waitForElementPresent(
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
+                    "Cannot find button to add an article to saved list after removing it from this list before"
+            );
+        }
     }
 
     public void closeSyncSavedArticleOverlay()
