@@ -56,6 +56,8 @@ abstract public class MyListsPageObject extends MainPageObject{
                 15);
     }
 
+   // public void clickByElement(String a)
+
     public void swipeByArticleToDelete(String article_title)
     {
         this.waitForArticleToAppearByTitle(article_title);

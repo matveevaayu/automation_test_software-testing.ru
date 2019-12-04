@@ -129,17 +129,18 @@ abstract public class ArticlePageObject extends MainPageObject {
 
     public void removeArticleFromSavedIfItAdded ()
     {
-        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
-            this.waitForElementAndClick(
-                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
-                    "Cannot click button to remove an article from saved",
-                    1
-            );
-            this.waitForElementPresent(
+//        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
+//            this.waitForElementAndClick(
+//                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+//                    "Cannot click button to remove an article from saved",
+//                    1
+//            );
+            this.waitForElementAndClick( //this.waitForElementPresent(
                     OPTIONS_ADD_TO_MY_LIST_BUTTON,
-                    "Cannot find button to add an article to saved list after removing it from this list before"
+                    "Cannot find button to add an article to saved list after removing it from this list before",
+                    5
             );
-        }
+       // }
     }
 
     public void closeSyncSavedArticleOverlay()

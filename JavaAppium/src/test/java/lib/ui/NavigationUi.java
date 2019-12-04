@@ -40,6 +40,16 @@ abstract public class NavigationUi extends MainPageObject{
             );
         }
     }
+    public void clickAddTitleInSaved() {
+        if (Platform.getInstance().isIOS()) {
+            this.tryClickElementWithFewAttempts(
+                    MY_LISTS_LINK,
+                    "Cannot find navigation button to My list",
+                    5
+            );
+        }
+    }
+
     public void clickExplore()
     {
         this.waitForElementAndClick(
