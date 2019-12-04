@@ -19,8 +19,9 @@ public class CoreTestCase extends TestCase {
         super.setUp();
 
         driver = Platform.getInstance().getDriver();
-        this.rotateScreenPortrait();
+        //this.rotateScreenPortrait();
         this.skipWelcomePageForIOSApp();
+        this.openWikiPageForMobileWeb();
 
     }
 
@@ -60,6 +61,16 @@ public class CoreTestCase extends TestCase {
             System.out.println("Method backgroundApp() does nothing for platform " + Platform.getInstance().getPlatformVar());
         }
 
+    }
+
+    protected void openWikiPageForMobileWeb()
+    {
+        if(Platform.getInstance().isMw()){
+            System.setProperty("webdriver.chrome.driver", "/Users/elektronnyjgorod/Documents/GitHub/automation_test_software-testing.ru/JavaAppium/chromedriver-2");
+            driver.get("https://en.m.wikipedia.org");
+        } else {
+            System.out.println("Method openWikiPageForMobileWeb() does nothing for platform " + Platform.getInstance().getPlatformVar());
+        }
     }
 
     private void skipWelcomePageForIOSApp()
